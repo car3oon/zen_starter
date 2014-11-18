@@ -1,0 +1,202 @@
+/**
+ * @file
+ * Positioning for a responsive layout.
+ *
+ * Define CSS classes to create a fluid grid layout with optional sidebars
+ * depending on whether blocks are placed in the left or right sidebars.
+ *
+ * This layout uses the Zen Grids plugin for Compass: http://zengrids.com
+ */
+
+ $susy: (
+    columns: 6,
+    gutters: 1/4,
+    math: fluid,
+    container-position: center,
+    output: float,
+    gutter-position: inside,
+    global-box-sizing: border-box
+  );
+
+/**
+ * Center the page.
+ *
+ * For screen sizes larger than 1200px, prevent excessively long lines of text
+ * by setting a max-width.
+ */
+.page,
+.region-bottom {
+  @include container(960px);
+  @include clearfix;
+}
+
+/* Apply the shared properties of grid items in a single, efficient ruleset. */
+#header,
+#content,
+#navigation,
+.region-sidebar-first,
+.region-sidebar-second,
+#footer {
+  // See the note about $zen-auto-include-item-base above.
+
+}
+
+/* Containers for grid items and flow items. */
+#header,
+#main,
+#footer {
+
+}
+
+/* Navigation bar */
+
+  #main {
+    /* Move all the children of #main down to make room. */
+    padding-top: $nav-height;
+    position: relative;
+  }
+  #name-and-slogan {
+    @include span(6);
+    @include susy-breakpoint($mobile, 12) {
+      @include span(3 alpha);
+    }
+  }
+  #navigation {
+    @include span(6);
+    @include susy-breakpoint($mobile, 12) {
+      @include span(9 omega);
+    }
+  }
+
+
+/**
+ * Use 3 grid columns for smaller screens.
+ */
+@media all and (min-width: 480px) and (max-width: 959px) {
+
+
+  /**
+   * The layout when there is only one sidebar, the left one.
+   */
+  .sidebar-first {
+    /* Span 2 columns, starting in 2nd column from left. */
+    #content {
+
+    }
+
+    /* Span 1 column, starting in 1st column from left. */
+    .region-sidebar-first {
+
+    }
+  }
+
+  /**
+   * The layout when there is only one sidebar, the right one.
+   */
+  .sidebar-second {
+    /* Span 2 columns, starting in 1st column from left. */
+    #content {
+
+    }
+
+    /* Span 1 column, starting in 3rd column from left. */
+    .region-sidebar-second {
+
+    }
+  }
+
+  /**
+   * The layout when there are two sidebars.
+   */
+  .two-sidebars {
+    /* Span 2 columns, starting in 2nd column from left. */
+    #content {
+
+    }
+
+    /* Span 1 column, starting in 1st column from left. */
+    .region-sidebar-first {
+
+    }
+
+    /* Start a new row and span all 3 columns. */
+    .region-sidebar-second {
+
+
+      /* Apply the shared properties of grid items in a single, efficient ruleset. */
+      .block {
+
+      }
+      /* Span 1 column, starting in the 1st column from left. */
+      .block:nth-child(3n+1) {
+
+
+      }
+      /* Span 1 column, starting in the 2nd column from left. */
+      .block:nth-child(3n+2) {
+
+      }
+      /* Span 1 column, starting in the 3rd column from left. */
+      .block:nth-child(3n) {
+
+      }
+    }
+  }
+}
+
+/**
+ * Use 5 grid columns for larger screens.
+ */
+@media all and (min-width: 960px) {
+
+
+  /**
+   * The layout when there is only one sidebar, the left one.
+   */
+  .sidebar-first {
+    /* Span 4 columns, starting in 2nd column from left. */
+    #content {
+
+    }
+
+    /* Span 1 column, starting in 1st column from left. */
+    .region-sidebar-first {
+
+    }
+  }
+
+  /**
+   * The layout when there is only one sidebar, the right one.
+   */
+  .sidebar-second {
+    /* Span 4 columns, starting in 1st column from left. */
+    #content {
+      ;
+    }
+
+    /* Span 1 column, starting in 5th column from left. */
+    .region-sidebar-second {
+
+    }
+  }
+
+  /**
+   * The layout when there are two sidebars.
+   */
+  .two-sidebars {
+    /* Span 3 columns, starting in 2nd column from left. */
+    #content {
+
+    }
+
+    /* Span 1 column, starting in 1st column from left. */
+    .region-sidebar-first {
+
+    }
+
+    /* Span 1 column, starting in 5th column from left. */
+    .region-sidebar-second {
+
+    }
+  }
+}
