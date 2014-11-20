@@ -17,6 +17,11 @@
 Drupal.behaviors.my_custom_behavior = {
   attach: function(context, settings) {
 
+    // Velocity.js sample
+    // First enable Velocity.js library in theme Appearance settings
+    // uncomment to see result
+    // $('body').velocity('transition.perspectiveLeftIn', {duration:400, delay:1000});
+
   }
 };
 
