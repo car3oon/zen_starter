@@ -14,7 +14,6 @@
     math: fluid,
     container-position: center,
     output: float,
-    gutter-position: inside,
     global-box-sizing: border-box
   );
 
@@ -26,7 +25,7 @@
  */
 .page,
 .region-bottom {
-  @include container(960px);
+  @include container(980px);
   @include clearfix;
 }
 
@@ -45,34 +44,28 @@
 #header,
 #main,
 #footer {
-
+  @include pie-clearfix;
 }
 
 /* Navigation bar */
 
   #main {
     /* Move all the children of #main down to make room. */
-    padding-top: $nav-height;
+    padding-top: 1em;
     position: relative;
   }
   #name-and-slogan {
-    @include span(6);
-    @include susy-breakpoint($mobile, 12) {
-      @include span(3 alpha);
+    @include span(4 alpha);
+    @include susy-breakpoint($mobile, 6) {
+      @include span(6);
     }
   }
   #navigation {
-    @include span(6);
-    @include susy-breakpoint($mobile, 12) {
-      @include span(9 omega);
+    @include span(8 omega);
+    @include susy-breakpoint($mobile, 6) {
+      @include span(6);
     }
   }
-
-
-/**
- * Use 3 grid columns for smaller screens.
- */
-@media all and (min-width: 480px) and (max-width: 959px) {
 
 
   /**
@@ -81,12 +74,20 @@
   .sidebar-first {
     /* Span 2 columns, starting in 2nd column from left. */
     #content {
-
+      @include span(6);
+      @include susy-breakpoint($mobile, 12) {
+        @include span(9 last);
+        @include omega;
+      }
     }
 
     /* Span 1 column, starting in 1st column from left. */
     .region-sidebar-first {
-
+      @include span(6);
+      @include susy-breakpoint($mobile, 12) {
+        @include span(3);
+        @include alpha;
+      }
     }
   }
 
@@ -96,12 +97,18 @@
   .sidebar-second {
     /* Span 2 columns, starting in 1st column from left. */
     #content {
-
+        @include span(6);
+        @include susy-breakpoint($mobile, 12) {
+          @include span(9);
+        }
     }
 
     /* Span 1 column, starting in 3rd column from left. */
     .region-sidebar-second {
-
+        @include span(6 last);
+        @include susy-breakpoint($mobile, 12) {
+          @include span(3 last);
+        }
     }
   }
 
@@ -109,18 +116,29 @@
    * The layout when there are two sidebars.
    */
   .two-sidebars {
-    /* Span 2 columns, starting in 2nd column from left. */
-    #content {
-
-    }
-
     /* Span 1 column, starting in 1st column from left. */
     .region-sidebar-first {
-
+        @include span(6);
+        @include susy-breakpoint($mobile, 12) {
+          @include span(3);
+        }
     }
+    /* Span 2 columns, starting in 2nd column from left. */
+    #content {
+        @include span(6);
+        @include susy-breakpoint($mobile, 12) {
+          @include span(6);
+        }
+    }
+
 
     /* Start a new row and span all 3 columns. */
     .region-sidebar-second {
+
+      @include span(6 last);
+      @include susy-breakpoint($mobile, 12) {
+        @include span(3 last);
+      }
 
 
       /* Apply the shared properties of grid items in a single, efficient ruleset. */
@@ -142,61 +160,3 @@
       }
     }
   }
-}
-
-/**
- * Use 5 grid columns for larger screens.
- */
-@media all and (min-width: 960px) {
-
-
-  /**
-   * The layout when there is only one sidebar, the left one.
-   */
-  .sidebar-first {
-    /* Span 4 columns, starting in 2nd column from left. */
-    #content {
-
-    }
-
-    /* Span 1 column, starting in 1st column from left. */
-    .region-sidebar-first {
-
-    }
-  }
-
-  /**
-   * The layout when there is only one sidebar, the right one.
-   */
-  .sidebar-second {
-    /* Span 4 columns, starting in 1st column from left. */
-    #content {
-      ;
-    }
-
-    /* Span 1 column, starting in 5th column from left. */
-    .region-sidebar-second {
-
-    }
-  }
-
-  /**
-   * The layout when there are two sidebars.
-   */
-  .two-sidebars {
-    /* Span 3 columns, starting in 2nd column from left. */
-    #content {
-
-    }
-
-    /* Span 1 column, starting in 1st column from left. */
-    .region-sidebar-first {
-
-    }
-
-    /* Span 1 column, starting in 5th column from left. */
-    .region-sidebar-second {
-
-    }
-  }
-}
